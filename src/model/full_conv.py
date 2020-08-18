@@ -71,9 +71,9 @@ class MainStream(nn.Module):
                                     stride=1,
                                     padding=2)
         self.enc1_bn2 = nn.BatchNorm1d(512)
-        self.enc1_ln2 = nn.LayerNorm(512)
+        # self.enc1_ln2 = nn.LayerNorm(512)
         self.enc1_pool2 = nn.MaxPool1d(kernel_size=2, stride=2)
-        #self.enc1 = nn.Sequential(self.enc1_conv1, self.enc1_bn1, self.relu, self.enc1_pool1,
+        # self.enc1 = nn.Sequential(self.enc1_conv1, self.enc1_bn1, self.relu, self.enc1_pool1,
         #                          self.enc1_conv2, self.enc1_bn2, self.relu, self.enc1_pool2)
 
         # encoder G2, one F3-S1-P1
@@ -83,10 +83,9 @@ class MainStream(nn.Module):
                                    stride=1,
                                    padding=1)
         self.enc2_bn = nn.BatchNorm1d(1024)
-        self.enc2_ln = nn.LayerNorm(1024)
-        #self.enc2 = nn.Sequential(self.enc2_conv, self.enc2_bn, self.relu)
-        #self.enc2 = nn.Sequential(self.enc2_conv, self.relu)
-        self.act_tanh = nn.Tanh()
+        # self.enc2_ln = nn.LayerNorm(1024)
+        # self.enc2 = nn.Sequential(self.enc2_conv, self.enc2_bn, self.relu)
+        # self.act_tanh = nn.Tanh()
         self.fc = nn.Linear(1024, vocab_size)
 
     def init(self):
@@ -114,26 +113,22 @@ class MainStream(nn.Module):
         x = self.avgpool(x).squeeze_()
         x = x.reshape(bs, 512, -1)  # [bs, 512, t]
 
-        # x = self.enc1_conv1(x)  # [bs, 512, t/4]
         x = self.enc1_conv1(x) # [bs, 512, t/2]
         x = self.enc1_bn1(x)
-        #x = self.enc1_ln1(x.transpose_(1,2)).transpose_(1,2) # [bs, 512, t]
-        #x = self.relu(x)
+        x = self.relu(x)
         x = self.enc1_pool1(x)  # [bs, 512, t/2]
 
         x = self.enc1_conv2(x)  # [bs, 512, t/2]
-        #x = self.enc1_ln2(x.transpose_(1, 2)).transpose_(1, 2)  # [bs, 512, t]
         x = self.enc1_bn2(x)
-        #x = self.relu(x)
+        x = self.relu(x)
         x = self.enc1_pool2(x)  # [bs, 512, t/4]
 
 
         # enc2
         x = self.enc2_conv(x)
-        #x = self.enc2_ln(x.transpose_(1,2)).transpose_(1,2)
-        out = self.act_tanh(x)
-        # out = self.enc2(x)  # [bs, 512, t/4]
-        # print("out: ", out.shape)
+        out = self.relu(x)
+        # out = self.act_tanh(x)
+
         out = out.permute(0, 2, 1)
         logits = self.fc(out)
         len_video = torch.Tensor(bs * [logits.size(1)]).to(logits.device)
