@@ -1,0 +1,335 @@
+# Copyright (c) Facebook, Inc. and its affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+import torch
+
+
+def new_arange(x, *size):
+    """
+    Return a Tensor of `size` filled with a range function on the device of x.
+    If size is empty, using the size of the variable x.
+    """
+    if len(size) == 0:
+        size = x.size()
+    return torch.arange(size[-1], device=x.device).expand(*size).contiguous()
+
+
+# -------------- Helper Functions --------------------------------------------------- #
+
+def load_libnat():
+    try:
+        from fairseq import libnat_cuda
+        return libnat_cuda, True
+
+    except ImportError as e:
+        # print(str(e) + '... fall back to CPU version')
+
+        try:
+            import libnat
+            return libnat, False
+
+        except ImportError as e:
+            import sys
+            sys.stderr.write("ERROR: missing libnat_cuda. run `python setup.py build_ext --inplace`\n")
+            raise e
+
+
+def _get_ins_targets(in_tokens, out_tokens, padding_idx, unk_idx):
+    libnat, use_cuda = load_libnat()
+
+    def _get_ins_targets_cuda(in_tokens, out_tokens, padding_idx, unk_idx):
+        in_masks = in_tokens.ne(padding_idx)
+        out_masks = out_tokens.ne(padding_idx)
+        mask_ins_targets, masked_tgt_masks = libnat.generate_insertion_labels(
+            out_tokens.int(), libnat.levenshtein_distance(
+                in_tokens.int(), out_tokens.int(),
+                in_masks.sum(1).int(), out_masks.sum(1).int()
+            )
+        )
+        masked_tgt_masks = masked_tgt_masks.bool() & out_masks
+        mask_ins_targets = mask_ins_targets.type_as(
+            in_tokens)[:, 1:in_masks.size(1)].masked_fill_(~in_masks[:, 1:], 0)
+        masked_tgt_tokens = out_tokens.masked_fill(masked_tgt_masks, unk_idx)
+        return masked_tgt_masks, masked_tgt_tokens, mask_ins_targets
+
+    def _get_ins_targets_cpu(in_tokens, out_tokens, padding_idx, unk_idx):
+        in_seq_len, out_seq_len = in_tokens.size(1), out_tokens.size(1)
+
+        in_tokens_list = [
+            [t for t in s if t != padding_idx] for i, s in enumerate(in_tokens.tolist())
+        ]
+        out_tokens_list = [
+            [t for t in s if t != padding_idx]
+            for i, s in enumerate(out_tokens.tolist())
+        ]
+        # print("in_tokens_list: ", in_tokens_list)
+        # print("out_tokens_list: ", out_tokens_list)
+
+        full_labels = libnat.suggested_ed2_path(
+            in_tokens_list, out_tokens_list, padding_idx
+        )
+        # print("full_labels: ", full_labels)
+        mask_inputs = [
+            [len(c) if c[0] != padding_idx else 0 for c in a[:-1]] for a in full_labels
+        ]
+        # print("mask_inputs: ", mask_inputs)
+
+        # generate labels
+        masked_tgt_masks = []
+        for mask_input in mask_inputs:
+            mask_label = []
+            for beam_size in mask_input[1:-1]:  # HACK 1:-1
+                mask_label += [0] + [1 for _ in range(beam_size)]
+            masked_tgt_masks.append(
+                mask_label + [0 for _ in range(out_seq_len - len(mask_label))]
+            )
+        mask_ins_targets = [
+            mask_input[1:-1] + [0 for _ in range(in_seq_len - 1 - len(mask_input[1:-1]))]
+            for mask_input in mask_inputs
+        ]
+
+        masked_tgt_masks = torch.tensor(
+            masked_tgt_masks, device=out_tokens.device).to(torch.uint8)
+
+        mask_ins_targets = torch.tensor(mask_ins_targets, device=in_tokens.device)
+        masked_tgt_tokens = out_tokens.masked_fill(masked_tgt_masks, unk_idx)
+        return masked_tgt_masks, masked_tgt_tokens, mask_ins_targets
+
+    if use_cuda:
+        return _get_ins_targets_cuda(in_tokens, out_tokens, padding_idx, unk_idx)
+    return _get_ins_targets_cpu(in_tokens, out_tokens, padding_idx, unk_idx)
+
+
+def _get_del_targets(in_tokens, out_tokens, padding_idx):
+    libnat, use_cuda = load_libnat()
+
+    def _get_del_targets_cuda(in_tokens, out_tokens, padding_idx):
+        in_masks = in_tokens.ne(padding_idx)
+        out_masks = out_tokens.ne(padding_idx)
+
+        word_del_targets = libnat.generate_deletion_labels(
+            in_tokens.int(),
+            libnat.levenshtein_distance(
+                in_tokens.int(), out_tokens.int(),
+                in_masks.sum(1).int(), out_masks.sum(1).int()
+            )
+        )
+        word_del_targets = word_del_targets.type_as(in_tokens).masked_fill_(~in_masks, 0)
+        return word_del_targets
+
+    def _get_del_targets_cpu(in_tokens, out_tokens, padding_idx):
+        # out_seq_len = out_tokens.size(1)
+        out_seq_len = in_tokens.size(1)  # TODO? The source code is the previous line of code
+        with torch.cuda.device_of(in_tokens):
+            in_tokens_list = [
+                [t for t in s if t != padding_idx] for i, s in enumerate(in_tokens.tolist())
+            ]
+            # print(in_tokens_list)
+            out_tokens_list = [
+                [t for t in s if t != padding_idx]
+                for i, s in enumerate(out_tokens.tolist())
+            ]
+            # print(out_tokens_list)
+
+        full_labels = libnat.suggested_ed2_path(
+            in_tokens_list, out_tokens_list, padding_idx
+        )
+        # print("full_labels: ", full_labels)
+
+        word_del_targets = [b[-1] for b in full_labels]
+        # print(len(word_del_targets), word_del_targets)
+        word_del_targets = [
+            labels + [0 for _ in range(out_seq_len - len(labels))]
+            for labels in word_del_targets
+        ]
+        # print([len(x) for x in word_del_targets])
+        # transform to tensor
+        word_del_targets = torch.tensor(word_del_targets, device=out_tokens.device)
+        return word_del_targets
+
+    if use_cuda:
+        return _get_del_targets_cuda(in_tokens, out_tokens, padding_idx)
+    return _get_del_targets_cpu(in_tokens, out_tokens, padding_idx)
+
+
+def _apply_ins_masks(
+        in_tokens, in_scores, mask_ins_pred, padding_idx, unk_idx, eos_idx
+):
+    in_masks = in_tokens.ne(padding_idx)
+    in_lengths = in_masks.sum(1)
+
+    # HACK: hacky way to shift all the paddings to eos first.
+    in_tokens.masked_fill_(~in_masks, eos_idx)
+    mask_ins_pred.masked_fill_(~in_masks[:, 1:], 0)
+
+    out_lengths = in_lengths + mask_ins_pred.sum(1)
+    out_max_len = out_lengths.max()
+    out_masks = (
+            new_arange(out_lengths, out_max_len)[None, :]
+            < out_lengths[:, None]
+    )
+
+    reordering = (mask_ins_pred + in_masks[:, 1:].long()).cumsum(1)
+    out_tokens = (
+        in_tokens.new_zeros(in_tokens.size(0), out_max_len)
+            .fill_(padding_idx)
+            .masked_fill_(out_masks, unk_idx)
+    )
+    out_tokens[:, 0] = in_tokens[:, 0]
+    out_tokens.scatter_(1, reordering, in_tokens[:, 1:])
+
+    out_scores = None
+    if in_scores is not None:
+        in_scores.masked_fill_(~in_masks, 0)
+        out_scores = in_scores.new_zeros(*out_tokens.size())
+        out_scores[:, 0] = in_scores[:, 0]
+        out_scores.scatter_(1, reordering, in_scores[:, 1:])
+
+    return out_tokens, out_scores
+
+
+def _apply_ins_words(
+        in_tokens, in_scores, word_ins_pred, word_ins_scores, unk_idx
+):
+    word_ins_masks = in_tokens.eq(unk_idx)
+    out_tokens = in_tokens.masked_scatter(word_ins_masks, word_ins_pred[word_ins_masks])
+
+    if in_scores is not None:
+        out_scores = in_scores.masked_scatter(
+            word_ins_masks, word_ins_scores[word_ins_masks]
+        )
+    else:
+        out_scores = None
+
+    return out_tokens, out_scores
+
+
+def _apply_del_words(
+        in_tokens, in_scores, in_attn, word_del_pred, padding_idx, bos_idx, eos_idx
+):
+    # apply deletion to a tensor
+    in_masks = in_tokens.ne(padding_idx)
+    bos_eos_masks = in_tokens.eq(bos_idx) | in_tokens.eq(eos_idx)
+
+    max_len = in_tokens.size(1)
+    word_del_pred.masked_fill_(~in_masks, 1)
+    word_del_pred.masked_fill_(bos_eos_masks, 0)
+
+    reordering = (
+        new_arange(in_tokens)
+            .masked_fill_(word_del_pred, max_len)
+            .sort(1)[1]
+    )
+
+    out_tokens = in_tokens.masked_fill(word_del_pred, padding_idx).gather(1, reordering)
+
+    out_scores = None
+    if in_scores is not None:
+        out_scores = in_scores.masked_fill(word_del_pred, 0).gather(1, reordering)
+
+    out_attn = None
+    if in_attn is not None:
+        _mask = word_del_pred[:, :, None].expand_as(in_attn)
+        _reordering = reordering[:, :, None].expand_as(in_attn)
+        out_attn = in_attn.masked_fill(_mask, 0.).gather(1, _reordering)
+
+    return out_tokens, out_scores, out_attn
+
+
+def _skip(x, mask):
+    """
+    Getting sliced (dim=0) tensor by mask. Supporting tensor and list/dict of tensors.
+    """
+    if isinstance(x, int):
+        return x
+
+    if x is None:
+        return None
+
+    if isinstance(x, torch.Tensor):
+        if x.size(0) == mask.size(0):
+            return x[mask]
+        elif x.size(1) == mask.size(0):
+            return x[:, mask]
+
+    if isinstance(x, list):
+        return [_skip(x_i, mask) for x_i in x]
+
+    if isinstance(x, dict):
+        return {k: _skip(v, mask) for k, v in x.items()}
+
+    raise NotImplementedError
+
+
+def _skip_encoder_out(reorder_encoder_out, encoder_out, mask):
+    if not mask.any():
+        return encoder_out
+    else:
+        return reorder_encoder_out(encoder_out, mask.nonzero().squeeze())
+
+
+def _fill(x, mask, y, padding_idx):
+    """
+    Filling tensor x with y at masked positions (dim=0).
+    """
+    if x is None:
+        return y
+    assert x.dim() == y.dim() and mask.size(0) == x.size(0)
+    assert x.dim() == 2 or (x.dim() == 3 and x.size(2) == y.size(2))
+    n_selected = mask.sum()
+    assert n_selected == y.size(0)
+
+    if n_selected == x.size(0):
+        return y
+
+    if x.size(1) < y.size(1):
+        dims = [x.size(0), y.size(1) - x.size(1)]
+        if x.dim() == 3:
+            dims.append(x.size(2))
+        x = torch.cat([x, x.new_zeros(*dims).fill_(padding_idx)], 1)
+        x[mask] = y
+    elif x.size(1) > y.size(1):
+        x[mask] = padding_idx
+        if x.dim() == 2:
+            x[mask, :y.size(1)] = y
+        else:
+            x[mask, :y.size(1), :] = y
+    else:
+        x[mask] = y
+    return x
+
+
+if __name__ == "__main__":
+    prev_tokens = torch.LongTensor([[1234,  901,  188,  630,  658, 1006,  215,   18, 1159, 1102,  932,  273,
+          278, 1006,  188,  538,  944,  746,  371, 1089, 1148, 1235],
+        [1234, 1124, 1091, 1124,  515,  133,  749,   14,  578,  867,  330,  948,
+          660,  354, 1235,    0,    0,    0,    0,    0,    0,    0]]
+                                   )
+    tgt_tokens = torch.LongTensor([[1234,  899,  899,  899,  445,  773,  218,  218,  593,  859,  998,  855,
+          752,   56, 1089,  445, 1026, 1139, 1235],
+        [1234, 1140,  451, 1062, 1065,  574,  781,  200, 1126,  710, 1139, 1235,
+            0,    0,    0,    0,    0,    0,    0]])
+    print(prev_tokens.shape, tgt_tokens.shape)
+    word_del_targets = _get_del_targets(prev_tokens[:, :], tgt_tokens, 0)
+    print(word_del_targets.shape)
+    #
+    # target_score, target_rank = word_del_targets.sort(1)
+    # target_len = torch.LongTensor(prev_tokens.size(0) * [prev_tokens.size(1)]) - torch.sum(word_del_targets, dim=-1)
+    # print(target_rank, target_len)
+    #
+    # bs, len = word_del_targets.size()
+    # target_cutoff = torch.cat(bs * [torch.arange(len).unsqueeze_(0)], dim=0)
+    # print(target_cutoff)
+    # target_cutoff = target_cutoff < target_len.unsqueeze(1)
+    # print(target_cutoff)
+    #
+    # prev_tokens = prev_tokens.gather(1, target_rank).masked_fill_(~target_cutoff, 0)
+    # print(prev_tokens)
+    # print(tgt_tokens)
+
+    # insert and predict
+    # masked_tgt_masks, masked_tgt_tokens, mask_ins_targets = _get_ins_targets(
+    #     prev_tokens, tgt_tokens, 0, 1)
+    # print("mask_ins_targets: ", mask_ins_targets)

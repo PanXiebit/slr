@@ -1,0 +1,6 @@
+Data/Mean
+libnat
+log/reimp/*pkl
+*pkl
+*.ipynb_checkpoints*
+*pyc

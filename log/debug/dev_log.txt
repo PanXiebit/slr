@@ -1,0 +1,18 @@
+08-16 04:43:22: Using GPU!
+08-16 04:43:22: Namespace(DEBUG=False, attention_dropout=0.1, batch_size=1, beam_width=5, check_point='/workspace/pt1/log/reimp/ep8.pkl', corpus_dev='Data/slr-phoenix14/dev.corpus.csv', corpus_dir='Data/slr-phoenix14', corpus_test='Data/slr-phoenix14/test.corpus.csv', corpus_train='Data/slr-phoenix14/train.corpus.csv', ctc_weight=1.0, data_worker=8, dec_weight=1.0, decoder_attention_heads=8, decoder_embed_dim=512, decoder_ffn_embed_dim=2048, decoder_layers=6, decoder_learned_pos=True, decoder_normalize_before=False, dropout=0.3, early_exit='3,3,3', eval_set='test', feature_dim=512, gpu=0, label_smoothing=0.1, learning_rate=0.0001, log_dir='./log/debug', max_epoch=1000, max_target_positions=1000, max_updates=10000000.0, momentum=0.9, no_scale_embedding=False, noise='random_delete', optimizer='adam', print_step=20, save_interval_updates=100, seed=8, share_input_output_embed=True, stage_epoch=10, task='dev', train_cnn_in_decoder=False, update_param='all', update_step=1, valid_batch_size=1, video_path='/workspace/c3d_res_phoenix_body_iter5_120k', vocab_file='Data/slr-phoenix14/newtrainingClasses.txt', weight_decay=0.0)
+08-16 04:43:22: [DATASET: dev]: total 540 samples.
+08-16 04:43:26: | num. ctc module params: 51663061 (num. trained: 51663061)
+08-16 04:43:26: Loading checkpoint file from /workspace/pt1/log/reimp/ep8.pkl
+08-16 04:43:37: --------------------------------------------------
+08-16 04:43:37: Epoch: 8, DEV ACC: 0.00000, 0/1
+08-16 04:43:37: Epoch: 8, DEV WER: 0.09091, SUB: 0.00000, INS: 0.00000, DEL: 0.09091
+08-16 04:43:38: [Relaxation Evaluation] Epoch: 8, DEV WER: 32.80000, SUB: 15.80000, INS: 3.30000, DEL: 13.80000
+08-16 04:43:38: Using GPU!
+08-16 04:43:38: Namespace(DEBUG=False, attention_dropout=0.1, batch_size=1, beam_width=5, check_point='/workspace/pt1/log/reimp/ep8.pkl', corpus_dev='Data/slr-phoenix14/dev.corpus.csv', corpus_dir='Data/slr-phoenix14', corpus_test='Data/slr-phoenix14/test.corpus.csv', corpus_train='Data/slr-phoenix14/train.corpus.csv', ctc_weight=1.0, data_worker=8, dec_weight=1.0, decoder_attention_heads=8, decoder_embed_dim=512, decoder_ffn_embed_dim=2048, decoder_layers=6, decoder_learned_pos=True, decoder_normalize_before=False, dropout=0.3, early_exit='3,3,3', eval_set='test', feature_dim=512, gpu=0, label_smoothing=0.1, learning_rate=0.0001, log_dir='./log/debug', max_epoch=1000, max_target_positions=1000, max_updates=10000000.0, momentum=0.9, no_scale_embedding=False, noise='random_delete', optimizer='adam', print_step=20, save_interval_updates=100, seed=8, share_input_output_embed=True, stage_epoch=10, task='dev', train_cnn_in_decoder=False, update_param='all', update_step=1, valid_batch_size=1, video_path='/workspace/c3d_res_phoenix_body_iter5_120k', vocab_file='Data/slr-phoenix14/newtrainingClasses.txt', weight_decay=0.0)
+08-16 04:43:38: [DATASET: dev]: total 540 samples.
+08-16 04:43:39: | num. ctc module params: 51663061 (num. trained: 51663061)
+08-16 04:43:39: Loading checkpoint file from /workspace/pt1/log/reimp/ep8.pkl
+08-16 04:46:40: --------------------------------------------------
+08-16 04:46:40: Epoch: 8, DEV ACC: 0.01296, 7/540
+08-16 04:46:40: Epoch: 8, DEV WER: 0.61675, SUB: 0.33282, INS: 0.24839, DEL: 0.03554
+08-16 04:46:41: [Relaxation Evaluation] Epoch: 8, DEV WER: 42.30000, SUB: 21.10000, INS: 11.50000, DEL: 9.70000

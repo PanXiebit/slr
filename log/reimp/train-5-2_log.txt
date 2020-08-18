@@ -1,0 +1,60 @@
+08-16 09:01:32: Using GPU!
+08-16 09:01:32: Namespace(DEBUG=False, attention_dropout=0.1, batch_size=20, beam_width=5, check_point='/workspace/pt1/log/reimp/ep11_35.3000.pkl', corpus_dev='Data/slr-phoenix14/dev.corpus.csv', corpus_dir='Data/slr-phoenix14', corpus_test='Data/slr-phoenix14/test.corpus.csv', corpus_train='Data/slr-phoenix14/train.corpus.csv', ctc_weight=0.1, data_worker=8, dec_weight=1.0, decoder_attention_heads=8, decoder_embed_dim=512, decoder_ffn_embed_dim=2048, decoder_layers=6, decoder_learned_pos=True, decoder_normalize_before=False, dropout=0.3, early_exit='6,6,6', eval_set='test', feature_dim=512, gpu=0, label_smoothing=0.1, learning_rate=0.0001, log_dir='./log/reimp', max_epoch=1000, max_target_positions=1000, max_updates=10000000.0, momentum=0.9, no_scale_embedding=False, no_share_discriminator=True, no_share_maskpredictor=True, noise='random_delete', optimizer='adam', print_step=50, save_interval_updates=100, seed=8, share_input_output_embed=True, stage_epoch=-1, task='train-5-2', train_cnn_in_decoder=True, update_param='all', update_step=1, valid_batch_size=1, video_path='/workspace/c3d_res_phoenix_body_iter5_120k', vocab_file='Data/slr-phoenix14/newtrainingClasses.txt', weight_decay=0.0)
+08-16 09:01:32: [DATASET: train]: total 5671 samples.
+08-16 09:01:32: [DATASET: dev]: total 540 samples.
+08-16 09:01:38: | num. module params: 102111445 (num. trained: 102111445)
+08-16 09:01:38: Loading checkpoint file from /workspace/pt1/log/reimp/ep11_35.3000.pkl
+08-16 09:01:40: | num. module params: 102111445 (num. trained: 102111445)
+08-16 09:02:04: Epoch: 12, num_updates: 50, loss: 7.292 -> 7.162
+08-16 09:02:27: Epoch: 12, num_updates: 100, loss: 7.162 -> 7.127
+08-16 09:02:51: Epoch: 12, num_updates: 150, loss: 7.127 -> 7.167
+08-16 09:03:14: Epoch: 12, num_updates: 200, loss: 7.167 -> 7.226
+08-16 09:03:38: Epoch: 12, num_updates: 250, loss: 7.226 -> 7.296
+08-16 09:03:54: --------------------- Jointly training ------------------------
+08-16 09:03:54: Epoch: 12, dec loss: 7.292 -> 7.195
+08-16 09:03:58: --------------------------------------------------
+08-16 09:03:58: Epoch: 12, DEV ACC: 0.04259, 23/540
+08-16 09:03:58: Epoch: 12, DEV WER: 0.36622, SUB: 0.23143, INS: 0.03600, DEL: 0.09879
+08-16 09:03:59: [Relaxation Evaluation] Epoch: 12, DEV WER: 31.10000, SUB: 15.30000, INS: 3.30000, DEL: 12.50000
+08-16 09:05:23: --------------------------------------------------
+08-16 09:05:23: Epoch: 12, DEV ACC: 0.03148, 17/540
+08-16 09:05:23: Epoch: 12, DEV WER: 0.41160, SUB: 0.25677, INS: 0.07733, DEL: 0.07751
+08-16 09:05:25: [Relaxation Evaluation] Epoch: 12, DEV WER: 35.20000, SUB: 16.70000, INS: 7.50000, DEL: 11.00000
+08-16 09:05:26: CURRENT BEST PERFORMANCE (epoch: 12): WER: 35.20000, SUB: 16.70000, INS: 7.50000, DEL: 11.00000
+08-16 09:05:26: | num. module params: 102111445 (num. trained: 102111445)
+08-16 09:05:35: Epoch: 13, num_updates: 300, loss: 7.195 -> 7.071
+08-16 09:05:58: Epoch: 13, num_updates: 350, loss: 7.071 -> 7.133
+08-16 09:06:21: Epoch: 13, num_updates: 400, loss: 7.133 -> 7.113
+08-16 09:06:44: Epoch: 13, num_updates: 450, loss: 7.113 -> 7.115
+08-16 09:07:07: Epoch: 13, num_updates: 500, loss: 7.115 -> 7.116
+08-16 09:07:30: Epoch: 13, num_updates: 550, loss: 7.116 -> 7.138
+08-16 09:07:39: --------------------- Jointly training ------------------------
+08-16 09:07:39: Epoch: 13, dec loss: 7.195 -> 7.130
+08-16 09:07:43: --------------------------------------------------
+08-16 09:07:43: Epoch: 13, DEV ACC: 0.03889, 21/540
+08-16 09:07:43: Epoch: 13, DEV WER: 0.36367, SUB: 0.22322, INS: 0.03403, DEL: 0.10641
+08-16 09:07:44: [Relaxation Evaluation] Epoch: 13, DEV WER: 31.20000, SUB: 15.10000, INS: 3.00000, DEL: 13.10000
+08-16 09:09:09: --------------------------------------------------
+08-16 09:09:09: Epoch: 13, DEV ACC: 0.03148, 17/540
+08-16 09:09:09: Epoch: 13, DEV WER: 0.41092, SUB: 0.25566, INS: 0.07393, DEL: 0.08134
+08-16 09:09:10: [Relaxation Evaluation] Epoch: 13, DEV WER: 35.40000, SUB: 16.60000, INS: 7.30000, DEL: 11.40000
+08-16 09:09:12: CURRENT BEST PERFORMANCE (epoch: 12): WER: 35.20000, SUB: 16.70000, INS: 7.50000, DEL: 11.00000
+08-16 09:09:12: | num. module params: 102111445 (num. trained: 102111445)
+08-16 09:09:28: Epoch: 14, num_updates: 600, loss: 7.130 -> 7.214
+08-16 09:09:51: Epoch: 14, num_updates: 650, loss: 7.214 -> 7.037
+08-16 09:10:14: Epoch: 14, num_updates: 700, loss: 7.037 -> 7.039
+08-16 09:10:38: Epoch: 14, num_updates: 750, loss: 7.039 -> 7.099
+08-16 09:11:01: Epoch: 14, num_updates: 800, loss: 7.099 -> 7.150
+08-16 09:11:25: Epoch: 14, num_updates: 850, loss: 7.150 -> 7.048
+08-16 09:11:26: --------------------- Jointly training ------------------------
+08-16 09:11:26: Epoch: 14, dec loss: 7.130 -> 7.089
+08-16 09:11:30: --------------------------------------------------
+08-16 09:11:30: Epoch: 14, DEV ACC: 0.04074, 22/540
+08-16 09:11:30: Epoch: 14, DEV WER: 0.36637, SUB: 0.22457, INS: 0.03276, DEL: 0.10904
+08-16 09:11:31: [Relaxation Evaluation] Epoch: 14, DEV WER: 31.40000, SUB: 15.10000, INS: 3.00000, DEL: 13.40000
+08-16 09:12:56: --------------------------------------------------
+08-16 09:12:56: Epoch: 14, DEV ACC: 0.03148, 17/540
+08-16 09:12:56: Epoch: 14, DEV WER: 0.41118, SUB: 0.25509, INS: 0.07158, DEL: 0.08450
+08-16 09:12:57: [Relaxation Evaluation] Epoch: 14, DEV WER: 35.40000, SUB: 16.60000, INS: 7.10000, DEL: 11.70000
+08-16 09:12:59: CURRENT BEST PERFORMANCE (epoch: 12): WER: 35.20000, SUB: 16.70000, INS: 7.50000, DEL: 11.00000
+08-16 09:12:59: | num. module params: 102111445 (num. trained: 102111445)

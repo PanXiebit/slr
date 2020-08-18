@@ -1,0 +1,10 @@
+08-16 07:27:01: Using GPU!
+08-16 07:27:01: Namespace(DEBUG=False, attention_dropout=0.1, batch_size=20, beam_width=5, check_point='/workspace/leven_joint/log/reimp/ep13_35.5000.pkl', corpus_dev='Data/slr-phoenix14/dev.corpus.csv', corpus_dir='Data/slr-phoenix14', corpus_test='Data/slr-phoenix14/test.corpus.csv', corpus_train='Data/slr-phoenix14/train.corpus.csv', ctc_weight=0.0, data_worker=8, dec_weight=5.0, decoder_attention_heads=8, decoder_embed_dim=512, decoder_ffn_embed_dim=2048, decoder_layers=6, decoder_learned_pos=True, decoder_normalize_before=False, dropout=0.3, early_exit='3,6,6', eval_set='test', feature_dim=512, gpu=0, label_smoothing=0.1, learning_rate=0.0001, log_dir='./log/reimp', max_epoch=1000, max_target_positions=1000, max_updates=10000000.0, momentum=0.9, no_scale_embedding=False, no_share_discriminator=True, no_share_maskpredictor=True, noise='random_delete', optimizer='adam', print_step=50, save_interval_updates=100, seed=8, share_input_output_embed=True, stage_epoch=-1, task='train-4', train_cnn_in_decoder=True, update_param='all', update_step=1, valid_batch_size=1, video_path='/workspace/c3d_res_phoenix_body_iter5_120k', vocab_file='Data/slr-phoenix14/newtrainingClasses.txt', weight_decay=0.0)
+08-16 07:27:02: [DATASET: train]: total 5671 samples.
+08-16 07:27:02: [DATASET: dev]: total 540 samples.
+08-16 07:27:05: | num. module params: 89499349 (num. trained: 89499349)
+08-16 07:27:05: No checkpoint file in found in /workspace/leven_joint/log/reimp/ep13_35.5000.pkl
+08-16 07:27:05: | num. module params: 89499349 (num. trained: 89499349)
+08-16 07:27:24: Epoch: 1, num_updates: 50, loss: 0.000 -> 50.688
+08-16 07:27:43: Epoch: 1, num_updates: 100, loss: 50.688 -> 42.610
+08-16 07:28:01: Epoch: 1, num_updates: 150, loss: 42.610 -> 42.151

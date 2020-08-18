@@ -1,0 +1,393 @@
+08-16 05:03:19: Using GPU!
+08-16 05:03:19: Namespace(DEBUG=False, attention_dropout=0.1, batch_size=20, beam_width=5, check_point='/workspace/leven_joint/log/reimp/ep.pkl', corpus_dev='Data/slr-phoenix14/dev.corpus.csv', corpus_dir='Data/slr-phoenix14', corpus_test='Data/slr-phoenix14/test.corpus.csv', corpus_train='Data/slr-phoenix14/train.corpus.csv', ctc_weight=0.1, data_worker=8, dec_weight=1.0, decoder_attention_heads=8, decoder_embed_dim=512, decoder_ffn_embed_dim=2048, decoder_layers=6, decoder_learned_pos=True, decoder_normalize_before=False, dropout=0.3, early_exit='3,3,3', eval_set='test', feature_dim=512, gpu=0, label_smoothing=0.1, learning_rate=0.0001, log_dir='./log/reimp', max_epoch=1000, max_target_positions=1000, max_updates=10000000.0, momentum=0.9, no_scale_embedding=False, noise='random_delete', optimizer='adam', print_step=50, save_interval_updates=100, seed=8, share_input_output_embed=True, stage_epoch=-1, task='train-1', train_cnn_in_decoder=True, update_param='all', update_step=1, valid_batch_size=1, video_path='/workspace/c3d_res_phoenix_body_iter5_120k', vocab_file='Data/slr-phoenix14/newtrainingClasses.txt', weight_decay=0.0)
+08-16 05:03:19: [DATASET: train]: total 5671 samples.
+08-16 05:03:19: [DATASET: dev]: total 540 samples.
+08-16 05:03:23: | num. ctc module params: 51663061 (num. trained: 51663061)
+08-16 05:03:23: No checkpoint file in found in /workspace/leven_joint/log/reimp/ep.pkl
+08-16 05:03:38: Epoch: 1, num_updates: 50, loss: 0.000 -> 18.163
+08-16 05:03:52: Epoch: 1, num_updates: 100, loss: 18.163 -> 14.714
+08-16 05:04:06: Epoch: 1, num_updates: 150, loss: 14.714 -> 14.339
+08-16 05:04:20: Epoch: 1, num_updates: 200, loss: 14.339 -> 14.043
+08-16 05:04:34: Epoch: 1, num_updates: 250, loss: 14.043 -> 13.617
+08-16 05:04:44: --------------------- Jointly training ------------------------
+08-16 05:04:44: Epoch: 1, dec loss: 0.000 -> 14.753
+08-16 05:04:48: --------------------------------------------------
+08-16 05:04:48: Epoch: 1, DEV ACC: 0.00185, 1/540
+08-16 05:04:48: Epoch: 1, DEV WER: 0.80175, SUB: 0.02050, INS: 0.00023, DEL: 0.78102
+08-16 05:04:49: [Relaxation Evaluation] Epoch: 1, DEV WER: 81.40000, SUB: 2.70000, INS: 0.00000, DEL: 78.60000
+08-16 05:05:39: --------------------------------------------------
+08-16 05:05:39: Epoch: 1, DEV ACC: 0.00000, 0/540
+08-16 05:05:39: Epoch: 1, DEV WER: 0.93485, SUB: 0.19939, INS: 0.06326, DEL: 0.67220
+08-16 05:05:39: [Relaxation Evaluation] Epoch: 1, DEV WER: 92.10000, SUB: 12.30000, INS: 3.90000, DEL: 75.90000
+08-16 05:05:40: CURRENT BEST PERFORMANCE (epoch: 1): WER: 92.10000, SUB: 12.30000, INS: 3.90000, DEL: 75.90000
+08-16 05:05:45: Epoch: 2, num_updates: 300, loss: 14.753 -> 12.777
+08-16 05:05:59: Epoch: 2, num_updates: 350, loss: 12.777 -> 12.597
+08-16 05:06:13: Epoch: 2, num_updates: 400, loss: 12.597 -> 12.031
+08-16 05:06:27: Epoch: 2, num_updates: 450, loss: 12.031 -> 11.548
+08-16 05:06:41: Epoch: 2, num_updates: 500, loss: 11.548 -> 11.101
+08-16 05:06:55: Epoch: 2, num_updates: 550, loss: 11.101 -> 10.762
+08-16 05:07:00: --------------------- Jointly training ------------------------
+08-16 05:07:00: Epoch: 2, dec loss: 14.753 -> 11.614
+08-16 05:07:04: --------------------------------------------------
+08-16 05:07:04: Epoch: 2, DEV ACC: 0.00926, 5/540
+08-16 05:07:04: Epoch: 2, DEV WER: 0.49106, SUB: 0.20703, INS: 0.00645, DEL: 0.27759
+08-16 05:07:05: [Relaxation Evaluation] Epoch: 2, DEV WER: 47.20000, SUB: 15.80000, INS: 1.10000, DEL: 30.30000
+08-16 05:08:03: --------------------------------------------------
+08-16 05:08:03: Epoch: 2, DEV ACC: 0.00185, 1/540
+08-16 05:08:03: Epoch: 2, DEV WER: 0.71616, SUB: 0.33494, INS: 0.18278, DEL: 0.19844
+08-16 05:08:04: [Relaxation Evaluation] Epoch: 2, DEV WER: 66.00000, SUB: 24.40000, INS: 16.40000, DEL: 25.30000
+08-16 05:08:05: CURRENT BEST PERFORMANCE (epoch: 2): WER: 66.00000, SUB: 24.40000, INS: 16.40000, DEL: 25.30000
+08-16 05:08:14: Epoch: 3, num_updates: 600, loss: 11.614 -> 10.360
+08-16 05:08:29: Epoch: 3, num_updates: 650, loss: 10.360 -> 10.187
+08-16 05:08:43: Epoch: 3, num_updates: 700, loss: 10.187 -> 10.116
+08-16 05:08:57: Epoch: 3, num_updates: 750, loss: 10.116 -> 9.929
+08-16 05:09:11: Epoch: 3, num_updates: 800, loss: 9.929 -> 9.969
+08-16 05:09:25: Epoch: 3, num_updates: 850, loss: 9.969 -> 9.671
+08-16 05:09:26: --------------------- Jointly training ------------------------
+08-16 05:09:26: Epoch: 3, dec loss: 11.614 -> 10.014
+08-16 05:09:29: --------------------------------------------------
+08-16 05:09:29: Epoch: 3, DEV ACC: 0.02037, 11/540
+08-16 05:09:29: Epoch: 3, DEV WER: 0.42018, SUB: 0.23404, INS: 0.01710, DEL: 0.16904
+08-16 05:09:31: [Relaxation Evaluation] Epoch: 3, DEV WER: 38.30000, SUB: 16.80000, INS: 2.10000, DEL: 19.30000
+08-16 05:10:29: --------------------------------------------------
+08-16 05:10:29: Epoch: 3, DEV ACC: 0.00926, 5/540
+08-16 05:10:29: Epoch: 3, DEV WER: 0.63971, SUB: 0.31070, INS: 0.19694, DEL: 0.13206
+08-16 05:10:30: [Relaxation Evaluation] Epoch: 3, DEV WER: 56.20000, SUB: 20.90000, INS: 17.70000, DEL: 17.60000
+08-16 05:10:31: CURRENT BEST PERFORMANCE (epoch: 3): WER: 56.20000, SUB: 20.90000, INS: 17.70000, DEL: 17.60000
+08-16 05:10:45: Epoch: 4, num_updates: 900, loss: 10.014 -> 9.266
+08-16 05:10:59: Epoch: 4, num_updates: 950, loss: 9.266 -> 9.388
+08-16 05:11:13: Epoch: 4, num_updates: 1000, loss: 9.388 -> 9.237
+08-16 05:11:27: Epoch: 4, num_updates: 1050, loss: 9.237 -> 9.342
+08-16 05:11:41: Epoch: 4, num_updates: 1100, loss: 9.342 -> 9.255
+08-16 05:11:52: --------------------- Jointly training ------------------------
+08-16 05:11:52: Epoch: 4, dec loss: 10.014 -> 9.295
+08-16 05:11:55: --------------------------------------------------
+08-16 05:11:55: Epoch: 4, DEV ACC: 0.02963, 16/540
+08-16 05:11:55: Epoch: 4, DEV WER: 0.39816, SUB: 0.21957, INS: 0.01881, DEL: 0.15977
+08-16 05:11:56: [Relaxation Evaluation] Epoch: 4, DEV WER: 36.20000, SUB: 16.00000, INS: 2.10000, DEL: 18.10000
+08-16 05:12:56: --------------------------------------------------
+08-16 05:12:56: Epoch: 4, DEV ACC: 0.01852, 10/540
+08-16 05:12:56: Epoch: 4, DEV WER: 0.57889, SUB: 0.28303, INS: 0.15230, DEL: 0.14356
+08-16 05:12:57: [Relaxation Evaluation] Epoch: 4, DEV WER: 51.60000, SUB: 19.50000, INS: 13.90000, DEL: 18.20000
+08-16 05:12:57: CURRENT BEST PERFORMANCE (epoch: 4): WER: 51.60000, SUB: 19.50000, INS: 13.90000, DEL: 18.20000
+08-16 05:13:02: Epoch: 5, num_updates: 1150, loss: 9.295 -> 8.832
+08-16 05:13:16: Epoch: 5, num_updates: 1200, loss: 8.832 -> 8.778
+08-16 05:13:30: Epoch: 5, num_updates: 1250, loss: 8.778 -> 8.834
+08-16 05:13:44: Epoch: 5, num_updates: 1300, loss: 8.834 -> 8.743
+08-16 05:13:58: Epoch: 5, num_updates: 1350, loss: 8.743 -> 8.857
+08-16 05:14:12: Epoch: 5, num_updates: 1400, loss: 8.857 -> 8.703
+08-16 05:14:18: --------------------- Jointly training ------------------------
+08-16 05:14:18: Epoch: 5, dec loss: 9.295 -> 8.790
+08-16 05:14:22: --------------------------------------------------
+08-16 05:14:22: Epoch: 5, DEV ACC: 0.03333, 18/540
+08-16 05:14:22: Epoch: 5, DEV WER: 0.38455, SUB: 0.22593, INS: 0.01963, DEL: 0.13900
+08-16 05:14:23: [Relaxation Evaluation] Epoch: 5, DEV WER: 34.60000, SUB: 16.10000, INS: 2.20000, DEL: 16.30000
+08-16 05:15:22: --------------------------------------------------
+08-16 05:15:22: Epoch: 5, DEV ACC: 0.02407, 13/540
+08-16 05:15:22: Epoch: 5, DEV WER: 0.58165, SUB: 0.27611, INS: 0.18145, DEL: 0.12408
+08-16 05:15:24: [Relaxation Evaluation] Epoch: 5, DEV WER: 50.50000, SUB: 19.00000, INS: 15.60000, DEL: 15.90000
+08-16 05:15:24: CURRENT BEST PERFORMANCE (epoch: 5): WER: 50.50000, SUB: 19.00000, INS: 15.60000, DEL: 15.90000
+08-16 05:15:33: Epoch: 6, num_updates: 1450, loss: 8.790 -> 8.338
+08-16 05:15:47: Epoch: 6, num_updates: 1500, loss: 8.338 -> 8.311
+08-16 05:16:01: Epoch: 6, num_updates: 1550, loss: 8.311 -> 8.316
+08-16 05:16:15: Epoch: 6, num_updates: 1600, loss: 8.316 -> 8.350
+08-16 05:16:29: Epoch: 6, num_updates: 1650, loss: 8.350 -> 8.493
+08-16 05:16:44: Epoch: 6, num_updates: 1700, loss: 8.493 -> 8.404
+08-16 05:16:45: --------------------- Jointly training ------------------------
+08-16 05:16:45: Epoch: 6, dec loss: 8.790 -> 8.376
+08-16 05:16:49: --------------------------------------------------
+08-16 05:16:49: Epoch: 6, DEV ACC: 0.04630, 25/540
+08-16 05:16:49: Epoch: 6, DEV WER: 0.36817, SUB: 0.24248, INS: 0.03347, DEL: 0.09222
+08-16 05:16:50: [Relaxation Evaluation] Epoch: 6, DEV WER: 32.10000, SUB: 17.10000, INS: 3.40000, DEL: 11.60000
+08-16 05:17:57: --------------------------------------------------
+08-16 05:17:57: Epoch: 6, DEV ACC: 0.02963, 16/540
+08-16 05:17:57: Epoch: 6, DEV WER: 0.53692, SUB: 0.28449, INS: 0.16627, DEL: 0.08616
+08-16 05:17:58: [Relaxation Evaluation] Epoch: 6, DEV WER: 47.40000, SUB: 19.60000, INS: 16.00000, DEL: 11.80000
+08-16 05:17:58: CURRENT BEST PERFORMANCE (epoch: 6): WER: 47.40000, SUB: 19.60000, INS: 16.00000, DEL: 11.80000
+08-16 05:18:19: Epoch: 7, num_updates: 1750, loss: 8.376 -> 7.895
+08-16 05:18:42: Epoch: 7, num_updates: 1800, loss: 7.895 -> 7.931
+08-16 05:19:05: Epoch: 7, num_updates: 1850, loss: 7.931 -> 7.906
+08-16 05:19:28: Epoch: 7, num_updates: 1900, loss: 7.906 -> 8.040
+08-16 05:19:51: Epoch: 7, num_updates: 1950, loss: 8.040 -> 8.003
+08-16 05:20:02: --------------------- Jointly training ------------------------
+08-16 05:20:02: Epoch: 7, dec loss: 8.376 -> 7.965
+08-16 05:20:06: --------------------------------------------------
+08-16 05:20:06: Epoch: 7, DEV ACC: 0.05556, 30/540
+08-16 05:20:06: Epoch: 7, DEV WER: 0.36277, SUB: 0.23370, INS: 0.03615, DEL: 0.09292
+08-16 05:20:07: [Relaxation Evaluation] Epoch: 7, DEV WER: 31.50000, SUB: 16.60000, INS: 3.50000, DEL: 11.40000
+08-16 05:21:28: --------------------------------------------------
+08-16 05:21:28: Epoch: 7, DEV ACC: 0.04074, 22/540
+08-16 05:21:28: Epoch: 7, DEV WER: 0.51854, SUB: 0.26945, INS: 0.17072, DEL: 0.07836
+08-16 05:21:29: [Relaxation Evaluation] Epoch: 7, DEV WER: 45.20000, SUB: 18.70000, INS: 15.80000, DEL: 10.70000
+08-16 05:21:30: CURRENT BEST PERFORMANCE (epoch: 7): WER: 45.20000, SUB: 18.70000, INS: 15.80000, DEL: 10.70000
+08-16 05:21:36: Epoch: 8, num_updates: 2000, loss: 7.965 -> 7.617
+08-16 05:21:58: Epoch: 8, num_updates: 2050, loss: 7.617 -> 7.529
+08-16 05:22:21: Epoch: 8, num_updates: 2100, loss: 7.529 -> 7.593
+08-16 05:22:45: Epoch: 8, num_updates: 2150, loss: 7.593 -> 7.626
+08-16 05:23:08: Epoch: 8, num_updates: 2200, loss: 7.626 -> 7.552
+08-16 05:23:27: Epoch: 8, num_updates: 2250, loss: 7.552 -> 7.577
+08-16 05:23:34: --------------------- Jointly training ------------------------
+08-16 05:23:34: Epoch: 8, dec loss: 7.965 -> 7.573
+08-16 05:23:37: --------------------------------------------------
+08-16 05:23:37: Epoch: 8, DEV ACC: 0.04630, 25/540
+08-16 05:23:37: Epoch: 8, DEV WER: 0.37552, SUB: 0.22491, INS: 0.02800, DEL: 0.12260
+08-16 05:23:38: [Relaxation Evaluation] Epoch: 8, DEV WER: 32.90000, SUB: 15.00000, INS: 2.90000, DEL: 15.00000
+08-16 05:24:45: --------------------------------------------------
+08-16 05:24:45: Epoch: 8, DEV ACC: 0.02963, 16/540
+08-16 05:24:45: Epoch: 8, DEV WER: 0.52513, SUB: 0.26113, INS: 0.14567, DEL: 0.11833
+08-16 05:24:46: [Relaxation Evaluation] Epoch: 8, DEV WER: 46.40000, SUB: 17.00000, INS: 14.10000, DEL: 15.30000
+08-16 05:24:46: CURRENT BEST PERFORMANCE (epoch: 7): WER: 45.20000, SUB: 18.70000, INS: 15.80000, DEL: 10.70000
+08-16 05:24:59: Epoch: 9, num_updates: 2300, loss: 7.573 -> 7.110
+08-16 05:25:22: Epoch: 9, num_updates: 2350, loss: 7.110 -> 7.142
+08-16 05:25:46: Epoch: 9, num_updates: 2400, loss: 7.142 -> 7.248
+08-16 05:26:09: Epoch: 9, num_updates: 2450, loss: 7.248 -> 7.158
+08-16 05:26:32: Epoch: 9, num_updates: 2500, loss: 7.158 -> 7.230
+08-16 05:26:54: Epoch: 9, num_updates: 2550, loss: 7.230 -> 7.377
+08-16 05:26:56: --------------------- Jointly training ------------------------
+08-16 05:26:56: Epoch: 9, dec loss: 7.573 -> 7.216
+08-16 05:27:00: --------------------------------------------------
+08-16 05:27:00: Epoch: 9, DEV ACC: 0.04259, 23/540
+08-16 05:27:00: Epoch: 9, DEV WER: 0.37236, SUB: 0.22800, INS: 0.03046, DEL: 0.11390
+08-16 05:27:01: [Relaxation Evaluation] Epoch: 9, DEV WER: 32.50000, SUB: 15.30000, INS: 3.00000, DEL: 14.20000
+08-16 05:28:25: --------------------------------------------------
+08-16 05:28:25: Epoch: 9, DEV ACC: 0.03333, 18/540
+08-16 05:28:25: Epoch: 9, DEV WER: 0.54215, SUB: 0.26270, INS: 0.17933, DEL: 0.10013
+08-16 05:28:26: [Relaxation Evaluation] Epoch: 9, DEV WER: 47.10000, SUB: 17.40000, INS: 16.40000, DEL: 13.30000
+08-16 05:28:26: CURRENT BEST PERFORMANCE (epoch: 7): WER: 45.20000, SUB: 18.70000, INS: 15.80000, DEL: 10.70000
+08-16 05:28:47: Epoch: 10, num_updates: 2600, loss: 7.216 -> 6.744
+08-16 05:29:10: Epoch: 10, num_updates: 2650, loss: 6.744 -> 6.956
+08-16 05:29:34: Epoch: 10, num_updates: 2700, loss: 6.956 -> 6.857
+08-16 05:29:58: Epoch: 10, num_updates: 2750, loss: 6.857 -> 6.936
+08-16 05:30:22: Epoch: 10, num_updates: 2800, loss: 6.936 -> 6.901
+08-16 05:30:40: --------------------- Jointly training ------------------------
+08-16 05:30:40: Epoch: 10, dec loss: 7.216 -> 6.876
+08-16 05:30:46: --------------------------------------------------
+08-16 05:30:46: Epoch: 10, DEV ACC: 0.04074, 22/540
+08-16 05:30:46: Epoch: 10, DEV WER: 0.37228, SUB: 0.23545, INS: 0.03969, DEL: 0.09714
+08-16 05:30:47: [Relaxation Evaluation] Epoch: 10, DEV WER: 32.20000, SUB: 15.90000, INS: 3.80000, DEL: 12.50000
+08-16 05:32:09: --------------------------------------------------
+08-16 05:32:09: Epoch: 10, DEV ACC: 0.03889, 21/540
+08-16 05:32:09: Epoch: 10, DEV WER: 0.46521, SUB: 0.26187, INS: 0.11930, DEL: 0.08405
+08-16 05:32:11: [Relaxation Evaluation] Epoch: 10, DEV WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:32:11: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:32:15: Epoch: 11, num_updates: 2850, loss: 6.876 -> 6.432
+08-16 05:32:36: Epoch: 11, num_updates: 2900, loss: 6.432 -> 6.431
+08-16 05:32:59: Epoch: 11, num_updates: 2950, loss: 6.431 -> 6.242
+08-16 05:33:22: Epoch: 11, num_updates: 3000, loss: 6.242 -> 6.287
+08-16 05:33:46: Epoch: 11, num_updates: 3050, loss: 6.287 -> 6.298
+08-16 05:34:09: Epoch: 11, num_updates: 3100, loss: 6.298 -> 6.397
+08-16 05:34:20: --------------------- Jointly training ------------------------
+08-16 05:34:20: Epoch: 11, dec loss: 6.876 -> 6.315
+08-16 05:34:26: --------------------------------------------------
+08-16 05:34:26: Epoch: 11, DEV ACC: 0.04259, 23/540
+08-16 05:34:26: Epoch: 11, DEV WER: 0.36316, SUB: 0.22492, INS: 0.03282, DEL: 0.10541
+08-16 05:34:27: [Relaxation Evaluation] Epoch: 11, DEV WER: 31.30000, SUB: 15.00000, INS: 3.10000, DEL: 13.20000
+08-16 05:35:47: --------------------------------------------------
+08-16 05:35:47: Epoch: 11, DEV ACC: 0.04074, 22/540
+08-16 05:35:47: Epoch: 11, DEV WER: 0.46840, SUB: 0.25452, INS: 0.12542, DEL: 0.08846
+08-16 05:35:48: [Relaxation Evaluation] Epoch: 11, DEV WER: 40.50000, SUB: 16.80000, INS: 11.80000, DEL: 11.90000
+08-16 05:35:48: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:35:57: Epoch: 12, num_updates: 3150, loss: 6.315 -> 6.068
+08-16 05:36:13: Epoch: 12, num_updates: 3200, loss: 6.068 -> 6.264
+08-16 05:36:36: Epoch: 12, num_updates: 3250, loss: 6.264 -> 6.125
+08-16 05:36:59: Epoch: 12, num_updates: 3300, loss: 6.125 -> 6.124
+08-16 05:37:22: Epoch: 12, num_updates: 3350, loss: 6.124 -> 6.125
+08-16 05:37:46: Epoch: 12, num_updates: 3400, loss: 6.125 -> 6.183
+08-16 05:37:49: --------------------- Jointly training ------------------------
+08-16 05:37:49: Epoch: 12, dec loss: 6.315 -> 6.158
+08-16 05:37:54: --------------------------------------------------
+08-16 05:37:54: Epoch: 12, DEV ACC: 0.04259, 23/540
+08-16 05:37:54: Epoch: 12, DEV WER: 0.36622, SUB: 0.22860, INS: 0.03198, DEL: 0.10564
+08-16 05:37:55: [Relaxation Evaluation] Epoch: 12, DEV WER: 31.60000, SUB: 15.30000, INS: 3.00000, DEL: 13.20000
+08-16 05:39:04: --------------------------------------------------
+08-16 05:39:04: Epoch: 12, DEV ACC: 0.03889, 21/540
+08-16 05:39:04: Epoch: 12, DEV WER: 0.47475, SUB: 0.25952, INS: 0.12885, DEL: 0.08638
+08-16 05:39:05: [Relaxation Evaluation] Epoch: 12, DEV WER: 41.00000, SUB: 17.30000, INS: 12.10000, DEL: 11.60000
+08-16 05:39:06: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:39:19: Epoch: 13, num_updates: 3450, loss: 6.158 -> 6.066
+08-16 05:39:34: Epoch: 13, num_updates: 3500, loss: 6.066 -> 6.099
+08-16 05:39:54: Epoch: 13, num_updates: 3550, loss: 6.099 -> 6.052
+08-16 05:40:17: Epoch: 13, num_updates: 3600, loss: 6.052 -> 6.131
+08-16 05:40:40: Epoch: 13, num_updates: 3650, loss: 6.131 -> 6.089
+08-16 05:40:59: --------------------- Jointly training ------------------------
+08-16 05:40:59: Epoch: 13, dec loss: 6.158 -> 6.090
+08-16 05:41:05: --------------------------------------------------
+08-16 05:41:05: Epoch: 13, DEV ACC: 0.04444, 24/540
+08-16 05:41:05: Epoch: 13, DEV WER: 0.36455, SUB: 0.22648, INS: 0.03310, DEL: 0.10497
+08-16 05:41:06: [Relaxation Evaluation] Epoch: 13, DEV WER: 31.50000, SUB: 15.20000, INS: 3.10000, DEL: 13.10000
+08-16 05:42:25: --------------------------------------------------
+08-16 05:42:25: Epoch: 13, DEV ACC: 0.03889, 21/540
+08-16 05:42:25: Epoch: 13, DEV WER: 0.48513, SUB: 0.25634, INS: 0.14172, DEL: 0.08707
+08-16 05:42:26: [Relaxation Evaluation] Epoch: 13, DEV WER: 42.30000, SUB: 17.00000, INS: 13.50000, DEL: 11.80000
+08-16 05:42:27: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:42:30: Epoch: 14, num_updates: 3700, loss: 6.090 -> 5.891
+08-16 05:42:46: Epoch: 14, num_updates: 3750, loss: 5.891 -> 5.952
+08-16 05:43:03: Epoch: 14, num_updates: 3800, loss: 5.952 -> 6.033
+08-16 05:43:19: Epoch: 14, num_updates: 3850, loss: 6.033 -> 6.094
+08-16 05:43:40: Epoch: 14, num_updates: 3900, loss: 6.094 -> 6.014
+08-16 05:44:04: Epoch: 14, num_updates: 3950, loss: 6.014 -> 6.055
+08-16 05:44:16: --------------------- Jointly training ------------------------
+08-16 05:44:16: Epoch: 14, dec loss: 6.090 -> 6.036
+08-16 05:44:22: --------------------------------------------------
+08-16 05:44:22: Epoch: 14, DEV ACC: 0.04444, 24/540
+08-16 05:44:22: Epoch: 14, DEV WER: 0.36499, SUB: 0.22944, INS: 0.03123, DEL: 0.10432
+08-16 05:44:23: [Relaxation Evaluation] Epoch: 14, DEV WER: 31.40000, SUB: 15.10000, INS: 3.10000, DEL: 13.20000
+08-16 05:45:48: --------------------------------------------------
+08-16 05:45:48: Epoch: 14, DEV ACC: 0.04074, 22/540
+08-16 05:45:48: Epoch: 14, DEV WER: 0.47767, SUB: 0.25807, INS: 0.13426, DEL: 0.08533
+08-16 05:45:49: [Relaxation Evaluation] Epoch: 14, DEV WER: 41.20000, SUB: 17.10000, INS: 12.50000, DEL: 11.60000
+08-16 05:45:50: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:45:57: Epoch: 15, num_updates: 4000, loss: 6.036 -> 5.953
+08-16 05:46:13: Epoch: 15, num_updates: 4050, loss: 5.953 -> 5.837
+08-16 05:46:28: Epoch: 15, num_updates: 4100, loss: 5.837 -> 6.002
+08-16 05:46:43: Epoch: 15, num_updates: 4150, loss: 6.002 -> 6.047
+08-16 05:47:03: Epoch: 15, num_updates: 4200, loss: 6.047 -> 5.937
+08-16 05:47:26: Epoch: 15, num_updates: 4250, loss: 5.937 -> 6.054
+08-16 05:47:31: --------------------- Jointly training ------------------------
+08-16 05:47:31: Epoch: 15, dec loss: 6.036 -> 5.975
+08-16 05:47:36: --------------------------------------------------
+08-16 05:47:36: Epoch: 15, DEV ACC: 0.04259, 23/540
+08-16 05:47:36: Epoch: 15, DEV WER: 0.36538, SUB: 0.22317, INS: 0.03077, DEL: 0.11143
+08-16 05:47:37: [Relaxation Evaluation] Epoch: 15, DEV WER: 31.60000, SUB: 14.80000, INS: 3.00000, DEL: 13.80000
+08-16 05:48:54: --------------------------------------------------
+08-16 05:48:54: Epoch: 15, DEV ACC: 0.03889, 21/540
+08-16 05:48:54: Epoch: 15, DEV WER: 0.46955, SUB: 0.25431, INS: 0.12446, DEL: 0.09078
+08-16 05:48:55: [Relaxation Evaluation] Epoch: 15, DEV WER: 40.80000, SUB: 16.90000, INS: 11.80000, DEL: 12.20000
+08-16 05:48:56: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:49:10: Epoch: 16, num_updates: 4300, loss: 5.975 -> 5.880
+08-16 05:49:26: Epoch: 16, num_updates: 4350, loss: 5.880 -> 5.962
+08-16 05:49:43: Epoch: 16, num_updates: 4400, loss: 5.962 -> 5.896
+08-16 05:49:59: Epoch: 16, num_updates: 4450, loss: 5.896 -> 5.973
+08-16 05:50:15: Epoch: 16, num_updates: 4500, loss: 5.973 -> 5.938
+08-16 05:50:34: --------------------- Jointly training ------------------------
+08-16 05:50:34: Epoch: 16, dec loss: 5.975 -> 5.928
+08-16 05:50:40: --------------------------------------------------
+08-16 05:50:40: Epoch: 16, DEV ACC: 0.04259, 23/540
+08-16 05:50:40: Epoch: 16, DEV WER: 0.36722, SUB: 0.22370, INS: 0.03110, DEL: 0.11242
+08-16 05:50:41: [Relaxation Evaluation] Epoch: 16, DEV WER: 31.90000, SUB: 14.90000, INS: 3.00000, DEL: 14.00000
+08-16 05:52:13: --------------------------------------------------
+08-16 05:52:13: Epoch: 16, DEV ACC: 0.04074, 22/540
+08-16 05:52:13: Epoch: 16, DEV WER: 0.47653, SUB: 0.25398, INS: 0.13040, DEL: 0.09215
+08-16 05:52:14: [Relaxation Evaluation] Epoch: 16, DEV WER: 41.50000, SUB: 16.80000, INS: 12.30000, DEL: 12.40000
+08-16 05:52:15: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:52:17: Epoch: 17, num_updates: 4550, loss: 5.928 -> 5.835
+08-16 05:52:32: Epoch: 17, num_updates: 4600, loss: 5.835 -> 5.752
+08-16 05:52:47: Epoch: 17, num_updates: 4650, loss: 5.752 -> 5.819
+08-16 05:53:02: Epoch: 17, num_updates: 4700, loss: 5.819 -> 5.934
+08-16 05:53:17: Epoch: 17, num_updates: 4750, loss: 5.934 -> 5.958
+08-16 05:53:32: Epoch: 17, num_updates: 4800, loss: 5.958 -> 5.889
+08-16 05:53:46: --------------------- Jointly training ------------------------
+08-16 05:53:46: Epoch: 17, dec loss: 5.928 -> 5.881
+08-16 05:53:51: --------------------------------------------------
+08-16 05:53:51: Epoch: 17, DEV ACC: 0.04444, 24/540
+08-16 05:53:51: Epoch: 17, DEV WER: 0.36716, SUB: 0.22495, INS: 0.03087, DEL: 0.11134
+08-16 05:53:52: [Relaxation Evaluation] Epoch: 17, DEV WER: 31.80000, SUB: 14.90000, INS: 2.90000, DEL: 13.90000
+08-16 05:55:10: --------------------------------------------------
+08-16 05:55:10: Epoch: 17, DEV ACC: 0.03889, 21/540
+08-16 05:55:10: Epoch: 17, DEV WER: 0.48454, SUB: 0.25595, INS: 0.13799, DEL: 0.09060
+08-16 05:55:11: [Relaxation Evaluation] Epoch: 17, DEV WER: 42.20000, SUB: 16.80000, INS: 13.10000, DEL: 12.30000
+08-16 05:55:11: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:55:20: Epoch: 18, num_updates: 4850, loss: 5.881 -> 5.588
+08-16 05:55:35: Epoch: 18, num_updates: 4900, loss: 5.588 -> 5.874
+08-16 05:55:50: Epoch: 18, num_updates: 4950, loss: 5.874 -> 5.843
+08-16 05:56:05: Epoch: 18, num_updates: 5000, loss: 5.843 -> 5.796
+08-16 05:56:20: Epoch: 18, num_updates: 5050, loss: 5.796 -> 5.783
+08-16 05:56:35: Epoch: 18, num_updates: 5100, loss: 5.783 -> 5.896
+08-16 05:56:40: --------------------- Jointly training ------------------------
+08-16 05:56:40: Epoch: 18, dec loss: 5.881 -> 5.825
+08-16 05:56:45: --------------------------------------------------
+08-16 05:56:45: Epoch: 18, DEV ACC: 0.04259, 23/540
+08-16 05:56:45: Epoch: 18, DEV WER: 0.36929, SUB: 0.22760, INS: 0.03353, DEL: 0.10817
+08-16 05:56:46: [Relaxation Evaluation] Epoch: 18, DEV WER: 31.70000, SUB: 15.30000, INS: 3.00000, DEL: 13.40000
+08-16 05:58:03: --------------------------------------------------
+08-16 05:58:03: Epoch: 18, DEV ACC: 0.03889, 21/540
+08-16 05:58:03: Epoch: 18, DEV WER: 0.47711, SUB: 0.25964, INS: 0.13154, DEL: 0.08594
+08-16 05:58:04: [Relaxation Evaluation] Epoch: 18, DEV WER: 41.20000, SUB: 17.30000, INS: 12.30000, DEL: 11.60000
+08-16 05:58:04: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 05:58:23: Epoch: 19, num_updates: 5150, loss: 5.825 -> 5.785
+08-16 05:58:39: Epoch: 19, num_updates: 5200, loss: 5.785 -> 5.725
+08-16 05:58:55: Epoch: 19, num_updates: 5250, loss: 5.725 -> 5.885
+08-16 05:59:11: Epoch: 19, num_updates: 5300, loss: 5.885 -> 5.783
+08-16 05:59:28: Epoch: 19, num_updates: 5350, loss: 5.783 -> 5.754
+08-16 05:59:42: --------------------- Jointly training ------------------------
+08-16 05:59:42: Epoch: 19, dec loss: 5.825 -> 5.786
+08-16 05:59:46: --------------------------------------------------
+08-16 05:59:46: Epoch: 19, DEV ACC: 0.04444, 24/540
+08-16 05:59:46: Epoch: 19, DEV WER: 0.36878, SUB: 0.22341, INS: 0.03206, DEL: 0.11331
+08-16 05:59:47: [Relaxation Evaluation] Epoch: 19, DEV WER: 32.00000, SUB: 15.00000, INS: 3.10000, DEL: 14.00000
+08-16 06:01:04: --------------------------------------------------
+08-16 06:01:04: Epoch: 19, DEV ACC: 0.04074, 22/540
+08-16 06:01:04: Epoch: 19, DEV WER: 0.48148, SUB: 0.25474, INS: 0.13532, DEL: 0.09142
+08-16 06:01:05: [Relaxation Evaluation] Epoch: 19, DEV WER: 42.00000, SUB: 17.10000, INS: 12.70000, DEL: 12.10000
+08-16 06:01:05: CURRENT BEST PERFORMANCE (epoch: 10): WER: 40.50000, SUB: 17.50000, INS: 11.40000, DEL: 11.50000
+08-16 06:01:08: Epoch: 20, num_updates: 5400, loss: 5.786 -> 5.602
+08-16 06:01:30: Epoch: 20, num_updates: 5450, loss: 5.602 -> 5.680
+08-16 06:01:51: Epoch: 20, num_updates: 5500, loss: 5.680 -> 5.711
+08-16 06:02:08: Epoch: 20, num_updates: 5550, loss: 5.711 -> 5.722
+08-16 06:02:24: Epoch: 20, num_updates: 5600, loss: 5.722 -> 5.807
+08-16 06:02:40: Epoch: 20, num_updates: 5650, loss: 5.807 -> 5.727
+08-16 06:02:50: --------------------- Jointly training ------------------------
+08-16 06:02:50: Epoch: 20, dec loss: 5.786 -> 5.730
+08-16 06:02:54: --------------------------------------------------
+08-16 06:02:54: Epoch: 20, DEV ACC: 0.04259, 23/540
+08-16 06:02:54: Epoch: 20, DEV WER: 0.36742, SUB: 0.22213, INS: 0.03157, DEL: 0.11372
+08-16 06:02:55: [Relaxation Evaluation] Epoch: 20, DEV WER: 31.90000, SUB: 14.60000, INS: 3.00000, DEL: 14.30000
+08-16 06:04:24: --------------------------------------------------
+08-16 06:04:24: Epoch: 20, DEV ACC: 0.03889, 21/540
+08-16 06:04:24: Epoch: 20, DEV WER: 0.46330, SUB: 0.25491, INS: 0.11697, DEL: 0.09142
+08-16 06:04:25: [Relaxation Evaluation] Epoch: 20, DEV WER: 40.10000, SUB: 16.80000, INS: 11.00000, DEL: 12.30000
+08-16 06:04:25: CURRENT BEST PERFORMANCE (epoch: 20): WER: 40.10000, SUB: 16.80000, INS: 11.00000, DEL: 12.30000
+08-16 06:04:35: Epoch: 21, num_updates: 5700, loss: 5.730 -> 5.605
+08-16 06:04:59: Epoch: 21, num_updates: 5750, loss: 5.605 -> 5.683
+08-16 06:05:21: Epoch: 21, num_updates: 5800, loss: 5.683 -> 5.709
+08-16 06:05:40: Epoch: 21, num_updates: 5850, loss: 5.709 -> 5.651
+08-16 06:05:56: Epoch: 21, num_updates: 5900, loss: 5.651 -> 5.658
+08-16 06:06:13: Epoch: 21, num_updates: 5950, loss: 5.658 -> 5.698
+08-16 06:06:17: --------------------- Jointly training ------------------------
+08-16 06:06:17: Epoch: 21, dec loss: 5.730 -> 5.680
+08-16 06:06:21: --------------------------------------------------
+08-16 06:06:21: Epoch: 21, DEV ACC: 0.04444, 24/540
+08-16 06:06:21: Epoch: 21, DEV WER: 0.36380, SUB: 0.22109, INS: 0.02938, DEL: 0.11332
+08-16 06:06:22: [Relaxation Evaluation] Epoch: 21, DEV WER: 31.60000, SUB: 14.60000, INS: 2.90000, DEL: 14.10000
+08-16 06:07:42: --------------------------------------------------
+08-16 06:07:42: Epoch: 21, DEV ACC: 0.04259, 23/540
+08-16 06:07:42: Epoch: 21, DEV WER: 0.45731, SUB: 0.25325, INS: 0.11266, DEL: 0.09141
+08-16 06:07:43: [Relaxation Evaluation] Epoch: 21, DEV WER: 39.60000, SUB: 16.60000, INS: 10.70000, DEL: 12.30000
+08-16 06:07:43: CURRENT BEST PERFORMANCE (epoch: 21): WER: 39.60000, SUB: 16.60000, INS: 10.70000, DEL: 12.30000
+08-16 06:08:00: Epoch: 22, num_updates: 6000, loss: 5.680 -> 5.606
+08-16 06:08:24: Epoch: 22, num_updates: 6050, loss: 5.606 -> 5.595
+08-16 06:08:47: Epoch: 22, num_updates: 6100, loss: 5.595 -> 5.634
+08-16 06:09:10: Epoch: 22, num_updates: 6150, loss: 5.634 -> 5.742
+08-16 06:09:25: Epoch: 22, num_updates: 6200, loss: 5.742 -> 5.662
+08-16 06:09:40: --------------------- Jointly training ------------------------
+08-16 06:09:40: Epoch: 22, dec loss: 5.680 -> 5.642
+08-16 06:09:43: --------------------------------------------------
+08-16 06:09:43: Epoch: 22, DEV ACC: 0.04074, 22/540
+08-16 06:09:43: Epoch: 22, DEV WER: 0.36853, SUB: 0.22367, INS: 0.03012, DEL: 0.11473
+08-16 06:09:44: [Relaxation Evaluation] Epoch: 22, DEV WER: 31.90000, SUB: 14.70000, INS: 2.90000, DEL: 14.30000
+08-16 06:11:04: --------------------------------------------------
+08-16 06:11:04: Epoch: 22, DEV ACC: 0.03889, 21/540
+08-16 06:11:04: Epoch: 22, DEV WER: 0.45798, SUB: 0.25572, INS: 0.11013, DEL: 0.09212
+08-16 06:11:05: [Relaxation Evaluation] Epoch: 22, DEV WER: 39.70000, SUB: 17.00000, INS: 10.30000, DEL: 12.40000
+08-16 06:11:05: CURRENT BEST PERFORMANCE (epoch: 21): WER: 39.60000, SUB: 16.60000, INS: 10.70000, DEL: 12.30000
+08-16 06:11:07: Epoch: 23, num_updates: 6250, loss: 5.642 -> 5.733
+08-16 06:11:31: Epoch: 23, num_updates: 6300, loss: 5.733 -> 5.561
+08-16 06:11:55: Epoch: 23, num_updates: 6350, loss: 5.561 -> 5.677
+08-16 06:12:18: Epoch: 23, num_updates: 6400, loss: 5.677 -> 5.562
+08-16 06:12:40: Epoch: 23, num_updates: 6450, loss: 5.562 -> 5.681
+08-16 06:12:59: Epoch: 23, num_updates: 6500, loss: 5.681 -> 5.629
+08-16 06:13:08: --------------------- Jointly training ------------------------
+08-16 06:13:08: Epoch: 23, dec loss: 5.642 -> 5.619
+08-16 06:13:12: --------------------------------------------------
+08-16 06:13:12: Epoch: 23, DEV ACC: 0.04630, 25/540
+08-16 06:13:12: Epoch: 23, DEV WER: 0.36685, SUB: 0.22269, INS: 0.03159, DEL: 0.11257
+08-16 06:13:13: [Relaxation Evaluation] Epoch: 23, DEV WER: 31.90000, SUB: 14.70000, INS: 3.10000, DEL: 14.10000
+08-16 06:14:37: --------------------------------------------------
+08-16 06:14:37: Epoch: 23, DEV ACC: 0.04074, 22/540
+08-16 06:14:37: Epoch: 23, DEV WER: 0.45347, SUB: 0.25383, INS: 0.10936, DEL: 0.09028
+08-16 06:14:38: [Relaxation Evaluation] Epoch: 23, DEV WER: 39.20000, SUB: 16.90000, INS: 10.30000, DEL: 12.10000
+08-16 06:14:39: CURRENT BEST PERFORMANCE (epoch: 23): WER: 39.20000, SUB: 16.90000, INS: 10.30000, DEL: 12.10000
+08-16 06:14:48: Epoch: 24, num_updates: 6550, loss: 5.619 -> 5.537
+08-16 06:15:12: Epoch: 24, num_updates: 6600, loss: 5.537 -> 5.543
+08-16 06:15:35: Epoch: 24, num_updates: 6650, loss: 5.543 -> 5.649
+08-16 06:15:58: Epoch: 24, num_updates: 6700, loss: 5.649 -> 5.596
